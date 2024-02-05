@@ -21,8 +21,9 @@ However, the **EJBCA Enterprise Edition** provides further modules and functiona
 Keyfactor SignServer **digital signature solution** is also based on a open source community project.
 
 
-## [Compose Tips](./compose/compose.md)
+## [Container Tips](./container/)
 
 Container technology provides an easily reproduceable and customizable deployment for customer and partner demo or evaluation environments. Therefore, this section contains some general basic tips to prepare and manage the compose environment.
 
-> **NOTE** - All container example commands asume `podman`as the underlying container engine. However, most command switched or parameters should also work with `docker`.
+> [!NOTE]
+> All container example commands asume `podman`as the underlying container engine. However, most command switched or parameters should also work with `docker`.
