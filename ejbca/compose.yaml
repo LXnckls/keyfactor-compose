@@ -1,0 +1,17 @@
+services:
+  ca:
+    image: keyfactor/ejbca-ce
+    hostname: ejbca
+    environment:
+      - TLS_SETUP_ENABLED="true"
+      - PASSWORD_ENCRYPTION_KEY="foo123"
+      - CA_KEYSTOREPASS="foo123"
+      - EJBCA_CLI_DEFAULTPASSWORD="foo123"
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    volumes:
+      - ejbca-db:/mnt/persistent
+
+volumes:
+  ejbca-db:
