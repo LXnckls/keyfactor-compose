@@ -1,2 +1,0 @@
-# EJBCA Compose Setup
-
