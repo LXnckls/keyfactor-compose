@@ -1,7 +1,9 @@
 services:
+
+  # Certificate Authority
   ca:
     image: keyfactor/ejbca-ce
-    hostname: ejbca
+    hostname: ca
     environment:
       - TLS_SETUP_ENABLED="true"
       - PASSWORD_ENCRYPTION_KEY="foo123"
@@ -11,7 +13,39 @@ services:
       - "8080:8080"
       - "8443:8443"
     volumes:
-      - ejbca-db:/mnt/persistent
+      - ca-db:/mnt/persistent
+
+  # Registration Authority
+  ra:
+    image: keyfactor/ejbca-ce
+    hostname: ra
+    environment:
+      - TLS_SETUP_ENABLED="true"
+      - PASSWORD_ENCRYPTION_KEY="foo123"
+      - CA_KEYSTOREPASS="foo123"
+      - EJBCA_CLI_DEFAULTPASSWORD="foo123"
+    ports:
+      - "9080:8080"
+      - "9443:8443"
+    volumes:
+      - ra-db:/mnt/persistent
+
+  # Validation Authority
+  # va:
+  #   image: keyfactor/ejbca-ce
+  #   hostname: va
+  #   environment:
+  #     - TLS_SETUP_ENABLED="true"
+  #     - PASSWORD_ENCRYPTION_KEY="foo123"
+  #     - CA_KEYSTOREPASS="foo123"
+  #     - EJBCA_CLI_DEFAULTPASSWORD="foo123"
+  #   ports:
+  #     - "8080:8080"
+  #     - "8443:8443"
+  #   volumes:
+  #     - va-db:/mnt/persistent
 
 volumes:
-  ejbca-db:
+  ca-db:
+  ra-db:
+  # va-db:
